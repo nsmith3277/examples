@@ -11,7 +11,7 @@ public:
   virtual ~Stack() {}
 
   virtual void push(const T&)=0;
-  virtual T& pop()=0;
+  virtual T pop()=0;
   virtual const T& peek() const =0;
   virtual void clear()=0;
   virtual int size()=0;

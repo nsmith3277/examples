@@ -17,7 +17,7 @@ public:
   ~AStack();
   
   void push(const T&);
-  T& pop();
+  T pop();
   const T& peek() const;
   void clear() { top = 0; }
   int size() { return top; }
@@ -42,7 +42,7 @@ void AStack<T>::push(const T& t) {
 }
 
 template <class T>
-T& AStack<T>::pop() {
+T AStack<T>::pop() {
   assert(top > 0);
   return list[--top];
 }
