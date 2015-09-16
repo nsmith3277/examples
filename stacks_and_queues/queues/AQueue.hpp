@@ -13,9 +13,16 @@ const int DEFAULT_QUEUE_SIZE = 10;
 template <class T>
 class AQueue : public Queue<T> {
 private:
+  // the size of the array
   int max_size = 0;
+
+  // the number of elements in the queue
   int count = 0;
+
+  // the index of the front
   int front = 0;
+
+  // the array itself
   T* list;
 public:
   AQueue(const int size=DEFAULT_QUEUE_SIZE);
@@ -30,12 +37,16 @@ public:
 
 template <class T>
 AQueue<T>::AQueue(const int size) {
+  // set the size of the array
   max_size = size;
+
+  // create the array
   list = new T[size];
 }
 
 template <class T>
 AQueue<T>::~AQueue() {
+  // delete the array from memory
   delete [] list;
 }
 
@@ -57,15 +68,20 @@ T AQueue<T>::dequeue() {
   T ret = list[front];
 
   // adjust front
+  // also adjusts count
+  // set front to 0 if there are no more elements the in queue
   front = (--count == 0 ? 0 : ++front % max_size);
   
+  // return the element
   return ret;
 }
 
 template <class T>
 const T& AQueue<T>::peek() const {
+  // make sure the array isnt empty
   assert(count > 0);
   
+  // return the front elements data
   return list[front];
 }
 
