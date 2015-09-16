@@ -46,7 +46,11 @@ void LStack<T>::push(const T& t) {
 
   // add the node to the linked list
   lsn->next = top;
+  
+  // move the top pointer to the new node
   top = lsn;
+
+  // increase the size
   ++current_size;
 }
 
@@ -55,10 +59,19 @@ T LStack<T>::pop() {
   // make sure the list is not empty
   assert(current_size > 0);
 
+  // point to the top node so we do not lose it
   LStack_Node<T>* temp = top;
+
+  // move the top pointer to the next in the stack
   top = top->next;
+
+  // save the data from the old top node to return it
   T t = temp->data;
+
+  // deletge the old top node
   delete temp;
+
+  // reduce the size
   --current_size;
   return t;
 }
