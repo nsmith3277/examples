@@ -50,12 +50,21 @@ template <class T>
 void EAStack<T>::push(const T& t) {
   //check if stack is full
   if (top >= current_size) { 
+
+    // create a new list of twice the current size
     T* new_list = new T[current_size * 2];
+
+    // copy elements from the old list into the new list
     for (int i = 0; i < current_size; ++i)
       new_list[i] = list[i];
 
+    // delet the old list
     delete [] list;
+
+    // point list at the new array
     list = new_list;
+
+    // update the current size
     current_size *= 2;
   }
   
